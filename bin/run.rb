@@ -1,3 +1,4 @@
 require_relative '../config/environment'
+require_relative '../lib/models/movie_night_app.rb'
 
-puts "hello world"
+MovieNightApp.new.run
