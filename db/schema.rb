@@ -13,8 +13,9 @@
 ActiveRecord::Schema.define(version: 2020_09_09_173909) do
 
   create_table "movie_nights", force: :cascade do |t|
-    t.string "genre"
-    t.string "runtime"
+    t.string "user"
+    t.string "movie"
+    t.datetime "showtime"
   end
 
   create_table "movies", force: :cascade do |t|
