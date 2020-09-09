@@ -18,13 +18,9 @@ class MovieNightApp
     def genre_query
         puts "What genre are you interested in?"
         @genres.each_with_index {|value, key| puts "#{key+=1}. #{value}"}
-<<<<<<< HEAD
-        user_genre = gets.chomp
-=======
         user_genre_input = gets.chomp
         user_genre = @genres[user_genre_input -= 1]
         genre_array = Movie.all.select {|movie| movie.genre == user_genre}
->>>>>>> 0e7da873ba63d8c5186f3cc71a69228f0f7a870e
     end
 
     def runtime_query
