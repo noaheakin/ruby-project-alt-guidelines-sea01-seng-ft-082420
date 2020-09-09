@@ -11,6 +11,7 @@ class MovieNightApp
         @runtime = ["1 - 1.5 hours", "1.5 - 2 hours", "2 - 2.5 hours", "over 2.5 hours"]
         @genres_array = []
         @genres_and_runtimes_array = []
+        @current_user = []
     end
 
     def welcome
@@ -27,7 +28,9 @@ class MovieNightApp
         if chosen_user == "*** I'm a new user ***"
             create_user
         else
+            @current_user << User.find_by_name(chosen_user)
             puts "Welcome back, #{chosen_user}!"
+            binding.pry
         end
     end
 
@@ -39,6 +42,7 @@ class MovieNightApp
         confirm = gets.chomp
         if confirm == "Y"
             new_user.save
+            @current_user << new_user
         elsif confirm == "N"
             create_user
         else
@@ -73,11 +77,17 @@ class MovieNightApp
         final_options = options_array.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_choice_input = gets.chomp.to_i
         user_choice = final_options[user_choice_input -= 1]
-        if user_choice == "*** Pick for me! ***"
-            puts "We've got you! Enjoy #{@genres_and_runtimes_array.sample.title}!"  
+        if user_choice == "*** Pick for me! ***"  
+            auto_pick    
         else 
+            movie_night = MovieNight.create(movie: user_choice, )
             puts "Great choice! We hope you enjoy #{user_choice}!"
         end
+    end
+
+    def auto_pick
+        puts "We've got you! Enjoy #{@genres_and_runtimes_array.sample.title}!"
+
     end
     
     # def release_year_query
