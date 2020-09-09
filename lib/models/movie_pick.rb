@@ -1,9 +1,3 @@
-class MoviePick
+class MoviePick < ActiveRecord::Base
 
-    attr_accessor :movie, :movie_night
-
-    def initialize (movie, movie_night)
-        @movie = movie
-        @movie_night = movie_night
-    end
 end

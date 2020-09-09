@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_000043) do
+ActiveRecord::Schema.define(version: 2020_09_09_173909) do
+
+  create_table "movie_nights", force: :cascade do |t|
+    t.string "genre"
+    t.string "runtime"
+  end
+
+  create_table "movie_picks", force: :cascade do |t|
+    t.string "movie"
+    t.string "movie_night"
+  end
 
   create_table "movies", force: :cascade do |t|
     t.string "title"
