@@ -17,10 +17,40 @@ class MovieNightApp
         puts "Welcome to Movie Night!"
     end
 
+    def user_name
+        puts "Who is watching a movie?"
+        users = User.all.map {|user| user.name}.sort
+        users << "*** I'm a new user ***"
+        final_users = users.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
+        user_name_input = gets.chomp.to_i
+        chosen_user = final_users[user_name_input -= 1]
+        if chosen_user == "*** I'm a new user ***"
+            create_user
+        else
+            puts "Welcome back, #{chosen_user}!"
+        end
+    end
+
+    def create_user
+        puts "Please enter a username"
+        user_name_input = gets.chomp
+        new_user = User.new(name: user_name_input)
+        puts "#{user_name_input} - is this correct? (Y/N)"
+        confirm = gets.chomp
+        if confirm == "Y"
+            new_user.save
+        elsif confirm == "N"
+            create_user
+        else
+            puts "That is not a valid response"
+            create_user
+        end
+    end
+
+
     def genre_query
         puts "What genre are you interested in?"
         @genres.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
-        binding.pry
         user_genre_input = gets.chomp.to_i
         user_genre = @genres[user_genre_input -= 1]
         genre_movies = Movie.all.select {|movie| movie.genre == user_genre}
@@ -57,6 +87,7 @@ class MovieNightApp
 
     def run
         welcome
+        user_name
         genre_query
         runtime_query
         make_a_choice
