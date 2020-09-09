@@ -17,15 +17,14 @@ ActiveRecord::Schema.define(version: 2020_09_09_173909) do
     t.string "runtime"
   end
 
-  create_table "movie_picks", force: :cascade do |t|
-    t.string "movie"
-    t.string "movie_night"
-  end
-
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.string "genre"
     t.string "runtime"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
   end
 
 end

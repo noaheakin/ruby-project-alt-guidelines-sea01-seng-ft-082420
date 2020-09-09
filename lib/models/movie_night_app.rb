@@ -1,6 +1,6 @@
 require_relative './movie.rb'
 require_relative './movie_night.rb'
-require_relative './movie_pick.rb'
+require_relative './user.rb'
 require 'pry'
 
 
@@ -20,6 +20,7 @@ class MovieNightApp
     def genre_query
         puts "What genre are you interested in?"
         @genres.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
+        binding.pry
         user_genre_input = gets.chomp.to_i
         user_genre = @genres[user_genre_input -= 1]
         genre_movies = Movie.all.select {|movie| movie.genre == user_genre}
