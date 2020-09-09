@@ -1,4 +1,4 @@
-class Movie
+class Movie < ActiveMigration::Base
 
     attr_accessor :title, :genre, :runtime, :release_year
 

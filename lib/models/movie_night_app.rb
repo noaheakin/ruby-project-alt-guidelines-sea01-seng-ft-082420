@@ -2,13 +2,13 @@ require_relative './movie.rb'
 require_relative './movie_night.rb'
 require_relative './movie_pick.rb'
 
+
 class MovieNightApp 
 
 
     def initialize
-        @genres = ["Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Drama", "Family", "Fantasy", "Film-Noir", "History", "Horror", "Music", "Musical", "Mystery", "Romance", "Sci-Fi", "Sport", "Thriller", "War", "Western"]
-        @runtime = []
-        @release_year = []
+        @genres = ["Action/Adventure", "Comedy", "Drama", "Family", "Fantasy", "Horror", "Musical", "Romance", "Sci-Fi", "Sport", "Thriller", "War", "Western"]
+        @runtime = ["1 - 1.5 hours", "1.5 - 2 hours", "2 - 2.5 hours", "over 2.5 hours"]
     end
 
     def welcome
@@ -16,26 +16,29 @@ class MovieNightApp
     end
 
     def genre_query
-        # puts @genres
         puts "What genre are you interested in?"
-        user_genre = gets.chomp
+        @genres.each_with_index {|value, key| puts "#{key+=1}. #{value}"}
+        user_genre_input = gets.chomp
+        user_genre = @genres[user_genre_input -= 1]
+        genre_array = Movie.all.select {|movie| movie.genre == user_genre}
     end
 
     def runtime_query
         puts "How long do you have to watch a movie?"
+        @runtime.each_with_index {|value, key| puts "#{key+=1}. #{value}"}
         user_runtime = gets.chomp
     end
 
-    def release_year_query
-        puts "When would you like your movie to have been released?"
-        user_release_year = gets.chomp
-    end
+    # def release_year_query
+    #     puts "When would you like your movie to have been released?"
+    #     user_release_year = gets.chomp
+    # end
 
     def run
         welcome
         genre_query
         runtime_query
-        release_year_query
+        # release_year_query
     end
 
 end
