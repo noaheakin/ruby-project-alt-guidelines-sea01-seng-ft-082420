@@ -39,11 +39,11 @@ class MovieNightApp
         user_name_input = gets.chomp
         new_user = User.new(name: user_name_input)
         puts "#{user_name_input} - is this correct? (Y/N)"
-        confirm = gets.chomp
-        if confirm == "Y"
+        confirm = gets.chomp.upcase
+        if confirm == "Y" || "YES"
             new_user.save
             @current_user_id << new_user.id
-        elsif confirm == "N"
+        elsif confirm == "N" || "NO"
             create_user
         else
             puts "That is not a valid response"
