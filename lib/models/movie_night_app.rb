@@ -40,10 +40,11 @@ class MovieNightApp
         new_user = User.new(name: user_name_input)
         puts "#{user_name_input} - is this correct? (Y/N)"
         confirm = gets.chomp.upcase
-        if confirm == "Y" || "YES"
+        if confirm == "Y" || confirm == "YES"
             new_user.save
+            puts "Hello, #{new_user.name}!"
             @current_user_id << new_user.id
-        elsif confirm == "N" || "NO"
+        elsif confirm == "N" || confirm == "NO"
             create_user
         else
             puts "That is not a valid response"
@@ -55,6 +56,10 @@ class MovieNightApp
         puts "What genre are you interested in?"
         @genres.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_genre_input = gets.chomp.to_i
+        if !(1..@genres.count).include? (user_genre_input)
+            puts "That's not a valid option"
+            genre_query
+        end
         user_genre = @genres[user_genre_input -= 1]
         genre_movies = Movie.all.select {|movie| movie.genre == user_genre}
         @genres_array += genre_movies
@@ -64,6 +69,10 @@ class MovieNightApp
         puts "How long do you have to watch a movie?"
         @runtime.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}    
         user_runtime_input = gets.chomp.to_i
+        if !(1..@runtime.count).include? (user_runtime_input)
+            puts "That's not a valid option"
+            runtime_query
+        end
         user_runtime = @runtime[user_runtime_input -= 1]
         runtime_movies = @genres_array.select {|movie| movie.runtime == user_runtime}
         @genres_and_runtimes_array += runtime_movies
