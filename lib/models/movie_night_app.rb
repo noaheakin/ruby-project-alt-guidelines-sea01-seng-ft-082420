@@ -16,21 +16,24 @@ class MovieNightApp
     end
 
     def welcome
-        puts "\n -------------------------\n| Welcome to Movie Night! |\n -------------------------\n\n"
+        puts "\n -------------------------\n| Welcome to Movie Night! |\n -------------------------\n"
     end
 
     def user_name
-        puts "Who is watching a movie?\n\n"
+        puts "\nWho is watching a movie?\n\n"
         users = User.all.map {|user| user.name}.sort
         users << "*** I'm a new user ***"
-        users << "**** Modify a user ****"
+        users << "**** User options ****"
         final_users = users.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_name_input = gets.chomp.to_i
         chosen_user = final_users[user_name_input -= 1]
         if chosen_user == "*** I'm a new user ***"
             create_user
-        elsif chosen_user == "**** Modify a user ****"
-            modify_user 
+        elsif chosen_user == "**** User options ****"
+            user_options 
+        elsif !(0..users.count).include? (user_name_input)
+            puts "\nThat is not a valid response\n\n"
+            user_name
         else
             user_instance = User.find_by(name: chosen_user)
             @current_user_id << user_instance.id
@@ -56,8 +59,8 @@ class MovieNightApp
         end
     end
 
-    def modify_user
-        puts "\nWhich user would you like to modify?\n\n"
+    def user_options
+        puts "\nWhich user would you like to look at?\n\n"
         users = User.all.map {|user| user.name}.sort
         final_users = users.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_modify_input = gets.chomp.to_i
@@ -68,17 +71,20 @@ class MovieNightApp
     end
 
     def modify_choices
-        user_name = User.find_by(id: @user_to_change)
-        puts "\n#{user_name.name}, what would you like to do?\n\n"
-        puts "(1) Change username"
-        puts "(2) Delete user"
-        puts "(3) Return to user list"
+        user = User.find_by(id: @user_to_change.last)
+        puts "\n#{user.name}, what would you like to do?\n\n"
+        puts "(1) View movie history"
+        puts "(2) Change username"
+        puts "(3) Delete user"
+        puts "(4) Return to user list"
         user_options_input = gets.chomp
         if user_options_input == "1"
+            user_history
+        elsif user_options_input == "2"
             update_user
-        elsif user_options_input == "2" 
+        elsif user_options_input == "3" 
             delete_user
-        elsif user_options_input == "3"
+        elsif user_options_input == "4"
             user_name
         else
             puts "\nThat is not a valid response\n"
@@ -86,10 +92,23 @@ class MovieNightApp
         end
     end
 
+    def user_history
+        user = User.find_by(id: @user_to_change.last)
+        if user.movies.count == 0
+            puts "\nNo movies yet, time to start watching!"
+            user_options
+        else
+            puts "\nHere are all of the movies #{user.name} has watched:\n\n"
+            user.movies.each_with_index {|movie, key| puts "(#{key+=1}) #{movie.title}"}
+            puts "\nWow, look at that!"
+            user_options
+        end
+    end
+
     def update_user
         puts "\nPlease enter a new username"
         user_name_input = gets.chomp
-        user = User.find_by(id: @user_to_change)
+        user = User.find_by(id: @user_to_change.last)
         user.update(name: user_name_input)
         puts "\nSuccesfully changed username to #{user_name_input}!\n\n"
         user_name
@@ -99,7 +118,7 @@ class MovieNightApp
         puts "\nAre you sure you want to delete this user? (Y/N)"
         user_input = gets.chomp.upcase
         if user_input == "Y" || user_input == "YES"
-            user = User.find_by(id: @user_to_change)
+            user = User.find_by(id: @user_to_change.last)
             name = user.name
             user.destroy
             puts "\nSuccesfully deleted #{name}.\n\n"
