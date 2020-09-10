@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2020_09_09_173909) do
 
   create_table "movie_nights", force: :cascade do |t|
-    t.string "user"
-    t.string "movie"
+    t.integer "user_id"
+    t.integer "movie_id"
     t.datetime "showtime"
   end
 

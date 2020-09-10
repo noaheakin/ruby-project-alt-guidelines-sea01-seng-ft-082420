@@ -1,8 +1,6 @@
 class Movie < ActiveRecord::Base
     
-    belongs_to :movie_night_app
-    
-    has_many :movie_picks
-    has_many :movie_nights, through: :movie_picks
+    has_many :movie_nights
+    has_many :users, through: :movie_nights
 
 end
