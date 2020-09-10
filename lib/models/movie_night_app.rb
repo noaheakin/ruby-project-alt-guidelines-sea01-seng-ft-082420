@@ -79,32 +79,34 @@ class MovieNightApp
     end
 
     def make_a_choice
-        puts "Please select a movie from the following:"
         options_array = @genres_and_runtimes_array.map {|movie| movie.title}.uniq
         options_array << "*** Pick for me! ***"
-        final_options = options_array.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
-        if final_options.count == 1
+        if options_array.count == 1
             no_movie_match
-        end
-        user_choice_input = gets.chomp.to_i
-        user_choice = final_options[user_choice_input -= 1]
-        if user_choice == "*** Pick for me! ***"  
-            auto_pick    
-        else 
-            movie_instance = Movie.find_by(title: user_choice)
-            movie_night = MovieNight.create(movie_id: movie_instance.id, user_id: @current_user_id[0], showtime: Time.now)
-            puts "Great choice! We hope you enjoy #{user_choice}!"
+        else
+            puts "Please select a movie from the following:"
+            final_options = options_array.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
+            user_choice_input = gets.chomp.to_i
+            user_choice = final_options[user_choice_input -= 1]
+            if user_choice == "*** Pick for me! ***"  
+                auto_pick    
+            else 
+                movie_instance = Movie.find_by(title: user_choice)
+                movie_night = MovieNight.create(movie_id: movie_instance.id, user_id: @current_user_id[0], showtime: Time.now)
+                puts "Great choice! We hope you enjoy #{user_choice}!"
+            end
         end
     end
 
     def auto_pick
         random_pick = @genres_and_runtimes_array.sample
         movie_night = MovieNight.create(movie_id: random_pick.id, user_id: @current_user_id[0], showtime: Time.now)
-        puts "We've got you! Enjoy #{random_pick}!"
+        puts "We've got you! Enjoy '#{random_pick.title}'!"
 
     end
 
     def no_movie_match
+        puts "Sorry, there are no movie matches. Let's try that again!"
         genre_query
         runtime_query
         make_a_choice
