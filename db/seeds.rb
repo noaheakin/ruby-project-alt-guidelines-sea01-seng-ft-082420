@@ -88,7 +88,7 @@ its_a_wonderful_life = Movie.create(title: "It's a Wonderful Life", genre: "Dram
 
 star_wars_a_create_hope = Movie.create(title: "Star Wars: Episode IV - A create Hope", genre: "Sci-Fi", runtime: "2 - 2.5 hours")
 
-saving_private_ryan = Movie.create(title: "Saving Private Ryan", genre: "War", runtime: "over 2.5 hours")
+saving_private_ryan = Movie.create(title: "Saving Private Ryan", genre: "Drama", runtime: "over 2.5 hours")
 
 spirited_away = Movie.create(title: "Spirited Away", genre: "Family", runtime: "2 - 2.5 hours")
 
@@ -248,13 +248,13 @@ dangal = Movie.create(title: "Dangal", genre: "Action/Adventure", runtime: "over
 
 eternal_sunshine_of_the_spotless_mind = Movie.create(title: "Eternal Sunshine of the Spotless Mind", genre: "Romance", runtime: "1.5 - 2 hours")
 
-nineteenseventeen = Movie.create(title: "1917", genre: "War", runtime: "1.5 - 2 hours")
+nineteenseventeen = Movie.create(title: "1917", genre: "Drama", runtime: "1.5 - 2 hours")
 
 the_hunt = Movie.create(title: "The Hunt", genre: "Drama", runtime: "1 - 1.5 hours")
 
 citizen_kane = Movie.create(title: "Citizen Kane", genre: "Drama", runtime: "1.5 - 2 hours")
 
-full_metal_jacket = Movie.create(title: "1.5 - 2 hours", genre: "War", runtime: "1.5 - 2 hours")
+full_metal_jacket = Movie.create(title: "1.5 - 2 hours", genre: "Drama", runtime: "1.5 - 2 hours")
 
 bicycle_thieves = Movie.create(title: "Bicycle Thieves", genre: "Drama", runtime: "1 - 1.5 hours")
 
