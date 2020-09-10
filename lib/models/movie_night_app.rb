@@ -12,6 +12,7 @@ class MovieNightApp
         @genres_array = []
         @genres_and_runtimes_array = []
         @current_user_id = []
+        @user_to_change = []
     end
 
     def welcome
@@ -42,12 +43,12 @@ class MovieNightApp
         user_name_input = gets.chomp
         new_user = User.new(name: user_name_input)
         puts "\n#{user_name_input} - is this correct? (Y/N)"
-        confirm = gets.chomp.upcase
-        if confirm == "Y" || confirm == "YES"
+        user_input = gets.chomp.upcase
+        if user_input == "Y" || user_input == "YES"
             new_user.save
             puts "\nHello, #{new_user.name}!\n\n"
             @current_user_id << new_user.id
-        elsif confirm == "N" || confirm == "NO"
+        elsif user_input == "N" || user_input == "NO"
             create_user
         else
             puts "\nThat is not a valid response\n\n"
@@ -59,8 +60,10 @@ class MovieNightApp
         puts "\nWhich user would you like to modify"
         users = User.all.map {|user| user.name}.sort
         final_users = users.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
-        user_modify_input = gets.chomp
+        user_modify_input = gets.chomp.to_i
         chosen_user = final_users[user_modify_input -= 1]
+        target_user = User.find_by(name: chosen_user)
+        @user_to_change << target_user.id
         puts "\n#{chosen_user}, what would you like to do?"
         modify_choices
     end
@@ -72,9 +75,9 @@ class MovieNightApp
         user_options_input = gets.chomp
         if user_options_input == "1"
             update_user
-        elsif user_choice_input == "2" 
+        elsif user_options_input == "2" 
             delete_user
-        elsif user_choice_input == "3"
+        elsif user_options_input == "3"
             user_name
         else
             puts "That is not a valid response"
@@ -83,11 +86,29 @@ class MovieNightApp
     end
 
     def update_user
-        
+        puts "\nPlease enter a new username"
+        user_name_input = gets.chomp
+        user = User.find_by(id: @user_to_change)
+        user.update(name: user_name_input)
+        puts "Succesfully changed username to #{user_name_input}."
+        user_name
     end
 
     def delete_user
-
+        puts "\nAre you sure you want to delete this user? (Y/N)"
+        user_input = gets.chomp.upcase
+        if user_input == "Y" || user_input == "YES"
+            user = User.find_by(id: @user_to_change)
+            name = user.name
+            user.destroy
+            puts "Succesfully deleted #{name}."
+            user_name
+        elsif user_input == "N" || user_input == "NO"
+            modify_choices
+        else
+            puts "That is not a valid response"
+            delete_user
+        end
     end
 
     def genre_query
@@ -126,12 +147,12 @@ class MovieNightApp
         else
             puts "\nPlease select a movie from the following:\n\n"
             final_options = options_array.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
-            user_choice_input = gets.chomp.to_i
-            if !(1..options_array.count).include? (user_choice_input)
+            user_options_input = gets.chomp.to_i
+            if !(1..options_array.count).include? (user_options_input)
                 puts "\nThat's not a valid option\n"
                 make_a_choice
             else
-                user_choice = final_options[user_choice_input -= 1]
+                user_choice = final_options[user_options_input -= 1]
                 if user_choice == "*** Pick for me! ***"  
                     auto_pick    
                 else 
