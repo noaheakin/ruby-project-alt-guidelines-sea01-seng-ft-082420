@@ -21,23 +21,25 @@ class MovieNightApp
 
     def user_name
         puts "\nWho is watching a movie?\n\n"
-        users = User.all.map {|user| user.name}.sort
-        users << "*** I'm a new user ***"
-        users << "**** User options ****"
-        final_users = users.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
+        users_array = User.all.map {|user| user.name}.sort
+        users_array << "*** I'm a new user ***"
+        users_array << "**** User options ****"
+        final_users = users_array.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_name_input = gets.chomp.to_i
-        chosen_user = final_users[user_name_input -= 1]
-        if chosen_user == "*** I'm a new user ***"
-            create_user
-        elsif chosen_user == "**** User options ****"
-            user_options 
-        elsif !(0..users.count).include? (user_name_input)
+        if !(1..users_array.count).include? (user_name_input)
             puts "\nThat is not a valid response\n\n"
             user_name
         else
-            user_instance = User.find_by(name: chosen_user)
-            @current_user_id << user_instance.id
-            puts "\nWelcome back, #{chosen_user}!\n"
+            chosen_user = final_users[user_name_input -= 1]
+            if chosen_user == "*** I'm a new user ***"
+                create_user
+            elsif chosen_user == "**** User options ****"
+                user_options 
+            else
+                user_instance = User.find_by(name: chosen_user)
+                @current_user_id << user_instance.id
+                puts "\nWelcome back, #{chosen_user}!\n"
+            end
         end
     end
 
@@ -64,10 +66,15 @@ class MovieNightApp
         users = User.all.map {|user| user.name}.sort
         final_users = users.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_modify_input = gets.chomp.to_i
-        chosen_user = final_users[user_modify_input -= 1]
-        target_user = User.find_by(name: chosen_user)
-        @user_to_change << target_user.id
-        modify_choices
+        if !(1..users.count).include? (user_modify_input)
+            puts "\nThat's not a valid option\n"
+            user_options
+        else
+            chosen_user = final_users[user_modify_input -= 1]
+            target_user = User.find_by(name: chosen_user)
+            @user_to_change << target_user.id
+            modify_choices
+        end
     end
 
     def modify_choices
