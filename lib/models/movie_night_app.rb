@@ -22,11 +22,14 @@ class MovieNightApp
         puts "Who is watching a movie?\n\n"
         users = User.all.map {|user| user.name}.sort
         users << "*** I'm a new user ***"
+        users << "**** Modify a user ****"
         final_users = users.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_name_input = gets.chomp.to_i
         chosen_user = final_users[user_name_input -= 1]
         if chosen_user == "*** I'm a new user ***"
             create_user
+        elsif chosen_user == "**** Modify a user ****"
+            modify_user 
         else
             user_instance = User.find_by(name: chosen_user)
             @current_user_id << user_instance.id
@@ -50,6 +53,41 @@ class MovieNightApp
             puts "\nThat is not a valid response\n\n"
             create_user
         end
+    end
+
+    def modify_user
+        puts "\nWhich user would you like to modify"
+        users = User.all.map {|user| user.name}.sort
+        final_users = users.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
+        user_modify_input = gets.chomp
+        chosen_user = final_users[user_modify_input -= 1]
+        puts "\n#{chosen_user}, what would you like to do?"
+        modify_choices
+    end
+
+    def modify_choices
+        puts "(1) Change username"
+        puts "(2) Delete user"
+        puts "(3) Return to user list"
+        user_options_input = gets.chomp
+        if user_options_input == "1"
+            update_user
+        elsif user_choice_input == "2" 
+            delete_user
+        elsif user_choice_input == "3"
+            user_name
+        else
+            puts "That is not a valid response"
+            modify_choices
+        end
+    end
+
+    def update_user
+        
+    end
+
+    def delete_user
+
     end
 
     def genre_query
