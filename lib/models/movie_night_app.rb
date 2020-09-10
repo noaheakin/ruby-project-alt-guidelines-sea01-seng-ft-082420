@@ -34,7 +34,7 @@ class MovieNightApp
         else
             user_instance = User.find_by(name: chosen_user)
             @current_user_id << user_instance.id
-            puts "\nWelcome back, #{chosen_user}!\n\n"
+            puts "\nWelcome back, #{chosen_user}!\n"
         end
     end
 
@@ -57,18 +57,19 @@ class MovieNightApp
     end
 
     def modify_user
-        puts "\nWhich user would you like to modify"
+        puts "\nWhich user would you like to modify?\n\n"
         users = User.all.map {|user| user.name}.sort
         final_users = users.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_modify_input = gets.chomp.to_i
         chosen_user = final_users[user_modify_input -= 1]
         target_user = User.find_by(name: chosen_user)
         @user_to_change << target_user.id
-        puts "\n#{chosen_user}, what would you like to do?"
         modify_choices
     end
 
     def modify_choices
+        user_name = User.find_by(id: @user_to_change)
+        puts "\n#{user_name.name}, what would you like to do?\n\n"
         puts "(1) Change username"
         puts "(2) Delete user"
         puts "(3) Return to user list"
@@ -80,7 +81,7 @@ class MovieNightApp
         elsif user_options_input == "3"
             user_name
         else
-            puts "That is not a valid response"
+            puts "\nThat is not a valid response\n"
             modify_choices
         end
     end
@@ -90,7 +91,7 @@ class MovieNightApp
         user_name_input = gets.chomp
         user = User.find_by(id: @user_to_change)
         user.update(name: user_name_input)
-        puts "Succesfully changed username to #{user_name_input}."
+        puts "\nSuccesfully changed username to #{user_name_input}!\n\n"
         user_name
     end
 
@@ -101,18 +102,18 @@ class MovieNightApp
             user = User.find_by(id: @user_to_change)
             name = user.name
             user.destroy
-            puts "Succesfully deleted #{name}."
+            puts "\nSuccesfully deleted #{name}.\n\n"
             user_name
         elsif user_input == "N" || user_input == "NO"
             modify_choices
         else
-            puts "That is not a valid response"
+            puts "\nThat is not a valid response\n"
             delete_user
         end
     end
 
     def genre_query
-        puts "What genre are you interested in?\n\n"
+        puts "\nWhat genre are you interested in?\n\n"
         @genres.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_genre_input = gets.chomp.to_i
         if !(1..@genres.count).include? (user_genre_input)
