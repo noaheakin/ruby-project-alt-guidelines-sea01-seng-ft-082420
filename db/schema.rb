@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_173909) do
+ActiveRecord::Schema.define(version: 2020_09_10_191820) do
 
   create_table "movie_nights", force: :cascade do |t|
     t.integer "user_id"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 2020_09_09_173909) do
     t.string "title"
     t.string "genre"
     t.string "runtime"
+  end
+
+  create_table "tv_show_nights", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tv_show_id"
+    t.datetime "watchtime"
+  end
+
+  create_table "tv_shows", force: :cascade do |t|
+    t.string "title"
+    t.string "seasons"
   end
 
   create_table "users", force: :cascade do |t|

@@ -417,3 +417,12 @@ no_country_for_old_men = Movie.create(title: "No Country for Old Men", genre: "T
 the_seventh_seal = Movie.create(title: "The Seventh Seal", genre: "Drama", runtime: "1.5 - 2 hours")
 
 inside_out = Movie.create(title: "Inside Out", genre: "Family", runtime: "1.5 - 2 hours")
+
+the_office = TvShow.create(title: "The Office", seasons: "9")
+
+friends = TvShow.create(title: "Friends", seasons: "10")
+
+how_the_universe_works = TvShow.create(title: "How The Universe Works", seasons: "8")
+
+nathan_for_you = TvShow.create(title: "Nathan for You", seasons: "4")
+
