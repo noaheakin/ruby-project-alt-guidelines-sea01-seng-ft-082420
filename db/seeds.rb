@@ -357,3 +357,63 @@ silver_linings_playbook = Movie.create(title: "Silver Linings Playbook", genre: 
 love_and_basketball = Movie.create(title: "Love and Basketball", genre: "Romance", runtime: "2 - 2.5 hours")
 
 when_harry_met_sally = Movie.create(title: "When Harry Met Sally", genre: "Romance", runtime: "1.5 - 2 hours")
+
+downfall = Movie.create(title: "Downfall", genre: "Drama", runtime: "over 2.5 hours")
+
+children_of_heaven = Movie.create(title: "Children of Heaven", genre: "Drama", runtime: "1 - 1.5 hours")
+
+unforgiven = Movie.create(title: "Unforgiven", genre: "Drama", runtime: "2 - 2.5 hours")
+
+anand = Movie.create(title: "Anand", genre: "Drama", runtime: "2 - 2.5 hours")
+
+some_like_it_hot = Movie.create(title: "Some Like It Hot", genre: "Comedy", runtime: "2 - 2.5 hours")
+
+ran = Movie.create(title: "Ran", genre: "Drama", runtime: "over 2.5 hours")
+
+howls_moving_castle = Movie.create(title: "Howl’s Moving Castle", genre: "Family", runtime: "1.5 - 2 hours")
+
+a_beautiful_mind = Movie.create(title: "A Beautiful Mind", genre: "Drama", runtime: "2 - 2.5 hours")
+
+all_about_eve = Movie.create(title: "All About Eve", genre: "Drama", runtime: "2 - 2.5 hours")
+
+the_great_escape = Movie.create(title: "The Great Escape", genre: "Action/Adventure", runtime: "over 2.5 hours")
+
+casino = Movie.create(title: "Casino", genre: "Drama", runtime: "over 2.5 hours")
+
+pans_labyrinth = Movie.create(title: "Pan’s Labyrinth", genre: "Drama", runtime: "1.5 - 2 hours")
+
+the_wolf_of_wall_street = Movie.create(title: "The Wolf of Wall Street", genre: "Drama", runtime: "over 2.5 hours")
+
+the_secret_in_their_eyes = Movie.create(title: "The Secret in Their Eyes", genre: "Drama", runtime: "2 - 2.5 hours")
+
+lock_stock_and_two_smoking_barrels = Movie.create(title: "Lock, Stock and Two Smoking Barrels", genre: "Action/Adventure", runtime: "1.5 - 2 hours")
+
+my_neighbor_totoro = Movie.create(title: "My Neighbor Totoro", genre: "Family", runtime: "1 - 1.5 hours")
+
+raging_bull = Movie.create(title: "Raging Bull", genre: "Drama", runtime: "2 - 2.5 hours")
+
+there_will_be_blood = Movie.create(title: "There Will Be Blood", genre: "Drama", runtime: "over 2.5 hours")
+
+judgment_at_nuremberg = Movie.create(title: "Judgment at Nuremberg", genre: "Drama", runtime: "over 2.5 hours")
+
+the_treasure_of_the_sierra_madre = Movie.create(title: "The Treasure Of The Sierra Madre", genre: "Western", runtime: "2 - 2.5 hours")
+
+three_billboards_outside_ebbing_missouri = Movie.create(title: "Three Billboards Outside Ebbing, Missouri", genre: "Drama", runtime: "1.5 - 2 hours")
+
+my_father_and_my_son = Movie.create(title: "My Father and My Son", genre: "Drama", runtime: "1.5 - 2 hours")
+
+dial_m_for_murder = Movie.create(title: "Dial M for Murder", genre: "Thriller", runtime: "1.5 - 2 hours")
+
+the_gold_rush = Movie.create(title: "The Gold Rush", genre: "Drama", runtime: "1.5 - 2 hours")
+
+chinatown = Movie.create(title: "Chinatown", genre: "Thriller", runtime: "2 - 2.5 hours")
+
+shutter_island = Movie.create(title: "Shutter Island", genre: "Thriller", runtime: "2 - 2.5 hours")
+
+v_for_vendetta = Movie.create(title: "V for Vendetta", genre: "Drama", runtime: "2 - 2.5 hours")
+
+no_country_for_old_men = Movie.create(title: "No Country for Old Men", genre: "Thriller", runtime: "2 - 2.5 hours")
+
+the_seventh_seal = Movie.create(title: "The Seventh Seal", genre: "Drama", runtime: "1.5 - 2 hours")
+
+inside_out = Movie.create(title: "Inside Out", genre: "Family", runtime: "1.5 - 2 hours")
