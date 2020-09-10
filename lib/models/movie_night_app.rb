@@ -15,11 +15,11 @@ class MovieNightApp
     end
 
     def welcome
-        puts "Welcome to Movie Night!"
+        puts "\n -------------------------\n| Welcome to Movie Night! |\n -------------------------\n\n"
     end
 
     def user_name
-        puts "Who is watching a movie?"
+        puts "Who is watching a movie?\n\n"
         users = User.all.map {|user| user.name}.sort
         users << "*** I'm a new user ***"
         final_users = users.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
@@ -30,34 +30,34 @@ class MovieNightApp
         else
             user_instance = User.find_by(name: chosen_user)
             @current_user_id << user_instance.id
-            puts "Welcome back, #{chosen_user}!"
+            puts "\nWelcome back, #{chosen_user}!\n\n"
         end
     end
 
     def create_user
-        puts "Please enter a username"
+        puts "\nPlease enter a username"
         user_name_input = gets.chomp
         new_user = User.new(name: user_name_input)
-        puts "#{user_name_input} - is this correct? (Y/N)"
+        puts "\n#{user_name_input} - is this correct? (Y/N)"
         confirm = gets.chomp.upcase
         if confirm == "Y" || confirm == "YES"
             new_user.save
-            puts "Hello, #{new_user.name}!"
+            puts "\nHello, #{new_user.name}!\n\n"
             @current_user_id << new_user.id
         elsif confirm == "N" || confirm == "NO"
             create_user
         else
-            puts "That is not a valid response"
+            puts "\nThat is not a valid response\n\n"
             create_user
         end
     end
 
     def genre_query
-        puts "What genre are you interested in?"
+        puts "What genre are you interested in?\n\n"
         @genres.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_genre_input = gets.chomp.to_i
         if !(1..@genres.count).include? (user_genre_input)
-            puts "That's not a valid option"
+            puts "\nThat's not a valid option\n\n"
             genre_query
         end
         user_genre = @genres[user_genre_input -= 1]
@@ -66,11 +66,11 @@ class MovieNightApp
     end
 
     def runtime_query
-        puts "How long do you have to watch a movie?"
+        puts "\nHow long do you have to watch a movie?\n\n"
         @runtime.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}    
         user_runtime_input = gets.chomp.to_i
         if !(1..@runtime.count).include? (user_runtime_input)
-            puts "That's not a valid option"
+            puts "\nThat's not a valid option\n\n"
             runtime_query
         end
         user_runtime = @runtime[user_runtime_input -= 1]
@@ -84,7 +84,7 @@ class MovieNightApp
         if options_array.count == 1
             no_movie_match
         else
-            puts "Please select a movie from the following:"
+            puts "\nPlease select a movie from the following:\n\n"
             final_options = options_array.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
             user_choice_input = gets.chomp.to_i
             user_choice = final_options[user_choice_input -= 1]
@@ -93,7 +93,7 @@ class MovieNightApp
             else 
                 movie_instance = Movie.find_by(title: user_choice)
                 movie_night = MovieNight.create(movie_id: movie_instance.id, user_id: @current_user_id[0], showtime: Time.now)
-                puts "Great choice! We hope you enjoy #{user_choice}!"
+                puts "\nGreat choice! We hope you enjoy '#{user_choice}'!\n\n"
             end
         end
     end
@@ -101,12 +101,12 @@ class MovieNightApp
     def auto_pick
         random_pick = @genres_and_runtimes_array.sample
         movie_night = MovieNight.create(movie_id: random_pick.id, user_id: @current_user_id[0], showtime: Time.now)
-        puts "We've got you! Enjoy '#{random_pick.title}'!"
+        puts "\nWe've got you! Enjoy '#{random_pick.title}'!\n\n"
 
     end
 
     def no_movie_match
-        puts "Sorry, there are no movie matches. Let's try that again!"
+        puts "\nSorry, there are no movie matches. Let's try that again!\n\n"
         genre_query
         runtime_query
         make_a_choice
