@@ -7,7 +7,7 @@ require 'pry'
 class MovieNightApp
 
     def initialize
-        @genres = ["Action/Adventure", "Comedy", "Drama", "Family", "Fantasy", "Horror", "Musical", "Romance", "Sci-Fi", "Sport", "Thriller", "Western"]
+        @genres = ["Action/Adventure", "Comedy", "Drama", "Family", "Fantasy", "Horror", "Musical", "Romance", "Sci-Fi", "Thriller", "Western"]
         @runtime = ["1 - 1.5 hours", "1.5 - 2 hours", "2 - 2.5 hours", "over 2.5 hours"]
         @genres_array = []
         @genres_and_runtimes_array = []
@@ -59,10 +59,11 @@ class MovieNightApp
         if !(1..@genres.count).include? (user_genre_input)
             puts "\nThat's not a valid option\n\n"
             genre_query
+        else
+            user_genre = @genres[user_genre_input -= 1]
+            genre_movies = Movie.all.select {|movie| movie.genre == user_genre}
+            @genres_array += genre_movies
         end
-        user_genre = @genres[user_genre_input -= 1]
-        genre_movies = Movie.all.select {|movie| movie.genre == user_genre}
-        @genres_array += genre_movies
     end
 
     def runtime_query
@@ -70,12 +71,13 @@ class MovieNightApp
         @runtime.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}    
         user_runtime_input = gets.chomp.to_i
         if !(1..@runtime.count).include? (user_runtime_input)
-            puts "\nThat's not a valid option\n\n"
+            puts "\nThat's not a valid option\n"
             runtime_query
+        else
+            user_runtime = @runtime[user_runtime_input -= 1]
+            runtime_movies = @genres_array.select {|movie| movie.runtime == user_runtime}
+            @genres_and_runtimes_array += runtime_movies
         end
-        user_runtime = @runtime[user_runtime_input -= 1]
-        runtime_movies = @genres_array.select {|movie| movie.runtime == user_runtime}
-        @genres_and_runtimes_array += runtime_movies
     end
 
     def make_a_choice
@@ -87,13 +89,18 @@ class MovieNightApp
             puts "\nPlease select a movie from the following:\n\n"
             final_options = options_array.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
             user_choice_input = gets.chomp.to_i
-            user_choice = final_options[user_choice_input -= 1]
-            if user_choice == "*** Pick for me! ***"  
-                auto_pick    
-            else 
-                movie_instance = Movie.find_by(title: user_choice)
-                movie_night = MovieNight.create(movie_id: movie_instance.id, user_id: @current_user_id[0], showtime: Time.now)
-                puts "\nGreat choice! We hope you enjoy '#{user_choice}'!\n\n"
+            if !(1..options_array.count).include? (user_choice_input)
+                puts "\nThat's not a valid option\n"
+                make_a_choice
+            else
+                user_choice = final_options[user_choice_input -= 1]
+                if user_choice == "*** Pick for me! ***"  
+                    auto_pick    
+                else 
+                    movie_instance = Movie.find_by(title: user_choice)
+                    movie_night = MovieNight.create(movie_id: movie_instance.id, user_id: @current_user_id[0], showtime: Time.now)
+                    puts "\nGreat choice! We hope you enjoy '#{user_choice}'!\n\n"
+                end
             end
         end
     end
