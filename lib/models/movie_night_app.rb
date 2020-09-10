@@ -11,7 +11,7 @@ class MovieNightApp
         @runtime = ["1 - 1.5 hours", "1.5 - 2 hours", "2 - 2.5 hours", "over 2.5 hours"]
         @genres_array = []
         @genres_and_runtimes_array = []
-        @current_user = ""
+        @current_user_id = []
     end
 
     def welcome
@@ -28,7 +28,8 @@ class MovieNightApp
         if chosen_user == "*** I'm a new user ***"
             create_user
         else
-            @current_user << chosen_user
+            user_instance = User.find_by(name: chosen_user)
+            @current_user_id << user_instance.id
             puts "Welcome back, #{chosen_user}!"
         end
     end
@@ -41,7 +42,7 @@ class MovieNightApp
         confirm = gets.chomp
         if confirm == "Y"
             new_user.save
-            @current_user << new_user.name
+            @current_user_id << new_user.id
         elsif confirm == "N"
             create_user
         else
@@ -49,7 +50,6 @@ class MovieNightApp
             create_user
         end
     end
-
 
     def genre_query
         puts "What genre are you interested in?"
@@ -71,7 +71,7 @@ class MovieNightApp
 
     def make_a_choice
         puts "Please select a movie from the following:"
-        options_array = @genres_and_runtimes_array.map {|movie| movie.title}
+        options_array = @genres_and_runtimes_array.map {|movie| movie.title}.uniq
         options_array << "*** Pick for me! ***"
         final_options = options_array.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_choice_input = gets.chomp.to_i
@@ -79,22 +79,18 @@ class MovieNightApp
         if user_choice == "*** Pick for me! ***"  
             auto_pick    
         else 
-            movie_night = MovieNight.create(movie: user_choice, user: @current_user)
+            movie_instance = Movie.find_by(title: user_choice)
+            movie_night = MovieNight.create(movie_id: movie_instance.id, user_id: @current_user_id[0], showtime: Time.now)
             puts "Great choice! We hope you enjoy #{user_choice}!"
         end
     end
 
     def auto_pick
-        random_pick = @genres_and_runtimes_array.sample.title
-        movie_night = MovieNight.create(movie: random_pick, user: @current_user)
+        random_pick = @genres_and_runtimes_array.sample
+        movie_night = MovieNight.create(movie_id: random_pick.id, user_id: @current_user_id[0], showtime: Time.now)
         puts "We've got you! Enjoy #{random_pick}!"
 
     end
-    
-    # def release_year_query
-    #     puts "When would you like your movie to have been released?"
-    #     user_release_year = gets.chomp
-    # end
 
     def run
         welcome
@@ -102,7 +98,6 @@ class MovieNightApp
         genre_query
         runtime_query
         make_a_choice
-        # release_year_query
     end
 
 end
