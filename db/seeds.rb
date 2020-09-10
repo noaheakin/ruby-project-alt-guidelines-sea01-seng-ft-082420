@@ -236,7 +236,7 @@ capernaum = Movie.new(title: "Capernaum", genre: "Drama", runtime: "2 - 2.5 hour
 
 good_will_hunting = Movie.new(title: "Good Will Hunting", genre: "Romance", runtime: "2 - 2.5 hours")
 
-2001_a_space_odyssey = Movie.new(title: "2001: A Space Odyssey", genre: "Sci-Fi", runtime: "2 - 2.5 hours")
+twothousandone_a_space_odyssey = Movie.new(title: "2001: A Space Odyssey", genre: "Sci-Fi", runtime: "2 - 2.5 hours")
 
 requiem_for_a_dream = Movie.new(title: "Requiem for a Dream", genre: "Drama", runtime: "1.5 - 2 hours")
 
@@ -352,7 +352,7 @@ crazy_rich_asians = Movie.create(title: "Crazy Rich Asians", genre: "Romance", r
 
 about_time = Movie.create(title: "About Time", genre: "Romance", runtime: "2 - 2.5 hours")
 
-silver_linings_playbook = Movie.create(title:, genre: "Romance", runtime: "2 - 2.5 hours")
+silver_linings_playbook = Movie.create(title: "Silver Linings Playbook", genre: "Romance", runtime: "2 - 2.5 hours")
 
 love_and_basketball = Movie.create(title: "Love and Basketball", genre: "Romance", runtime: "2 - 2.5 hours")
 
