@@ -22,8 +22,8 @@ class MovieNightApp
     def user_name
         puts "\n---Who is watching a movie?---\n\n"
         users_array = User.all.map {|user| user.name}.sort
-        users_array << "*** I'm a new user ***"
-        users_array << "**** User options ****"
+        users_array << "*** Create new user ***"
+        users_array << "**** View user options ****"
         final_users = users_array.each_with_index {|value, key| puts "(#{key+=1}) #{value}"}
         user_name_input = gets.chomp.to_i
         if !(1..users_array.count).include? (user_name_input)
@@ -31,9 +31,9 @@ class MovieNightApp
             user_name
         else
             chosen_user = final_users[user_name_input -= 1]
-            if chosen_user == "*** I'm a new user ***"
+            if chosen_user == "*** Create new user ***"
                 create_user
-            elsif chosen_user == "**** User options ****"
+            elsif chosen_user == "**** View user options ****"
                 user_options 
             else
                 user_instance = User.find_by(name: chosen_user)
@@ -51,8 +51,8 @@ class MovieNightApp
         user_input = gets.chomp.upcase
         if user_input == "Y" || user_input == "YES"
             new_user.save
-            puts "\n*Hello, #{new_user.name}!*\n"
-            @current_user_id << new_user.id
+            puts "\n*New user #{new_user.name} successfully created!*\n"
+            user_name
         elsif user_input == "N" || user_input == "NO"
             create_user
         else
