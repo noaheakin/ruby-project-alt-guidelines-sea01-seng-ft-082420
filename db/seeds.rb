@@ -418,37 +418,37 @@ the_seventh_seal = Movie.create(title: "The Seventh Seal", genre: "Drama", runti
 
 inside_out = Movie.create(title: "Inside Out", genre: "Family", runtime: "1.5 - 2 hours")
 
-the_magnificent_seven = Movie.create(title: "The Magnificent Seven", genre: "Western", runtime:, "1.5 - 2 hours")
+the_magnificent_seven = Movie.create(title: "The Magnificent Seven", genre: "Western", runtime:, "2 - 2.5 hours")
 
-the_revenant = Movie.create(title: "The Revenant", genre: "Western", runtime:, "1.5 - 2 hours")
+the_revenant = Movie.create(title: "The Revenant", genre: "Western", runtime:, "over 2.5 hours")
 
-the_hateful_eight = Movie.create(title: "The Hateful Eight", genre: "Western", runtime:, "1.5 - 2 hours")
+the_hateful_eight = Movie.create(title: "The Hateful Eight", genre: "Western", runtime:, "over 2.5 hours")
 
-three_ten_to_yuma = Movie.create(title: "3:10 to Yuma", genre: "Western", runtime:, "1 - 1.5 hours")
+three_ten_to_yuma = Movie.create(title: "3:10 to Yuma", genre: "Western", runtime:, "2 - 2.5 hours")
 
-tombstone = Movie.create(title: "Tombstone", genre: "Western", runtime:, "1 - 1.5 hours")
+tombstone = Movie.create(title: "Tombstone", genre: "Western", runtime:, "2 - 2.5 hours")
 
-a_million_ways_to_die_in_the_west = Movie.create(title: "A Million Ways to Die in the West", genre: "Western", runtime:, "1 - 1.5 hours")
+a_million_ways_to_die_in_the_west = Movie.create(title: "A Million Ways to Die in the West", genre: "Western", runtime:, "1.5 - 2 hours")
 
-the_ballad_of_buster_scruggs = Movie.create(title: "The Ballad of Buster Scruggs", genre: "Western", runtime:, "1.5 - 2 hours")
+the_ballad_of_buster_scruggs = Movie.create(title: "The Ballad of Buster Scruggs", genre: "Western", runtime:, "2 - 2.5 hours")
 
-true_grit = Movie.create(title: "True Grit", genre: "Western", runtime:, "1 - 1.5 hours")
+true_grit = Movie.create(title: "True Grit", genre: "Western", runtime:, "1.5 - 2 hours")
 
-legends_of_the_fall = Movie.create(title: "Legends of the Fall", genre: "Western", runtime:, "1.5 - 2 hours")
+legends_of_the_fall = Movie.create(title: "Legends of the Fall", genre: "Western", runtime:, "2 - 2.5 hours")
 
-true_history_of_the_kelly_gang = Movie.create(title: "True History of the Kelly Gang", genre: "Western", runtime:, "1 - 1.5 hours")
+true_history_of_the_kelly_gang = Movie.create(title: "True History of the Kelly Gang", genre: "Western", runtime:, "2 - 2.5 hours")
 
-hell_or_high_water = Movie.create(title: "Hell or High Water", genre: "Western", runtime:, "1 - 1.5 hours")
+hell_or_high_water = Movie.create(title: "Hell or High Water", genre: "Western", runtime:, "1.5 - 2 hours")
 
-hostiles = Movie.create(title: "Hostiles", genre: "Western", runtime:, "1.5 - 2 hours")
+hostiles = Movie.create(title: "Hostiles", genre: "Western", runtime:, "2 - 2.5 hours")
 
-mulan = Movie.create(title: "Mulan", genre: "Family", runtime:, "1 - 1.5 hours")
+mulan = Movie.create(title: "Mulan", genre: "Family", runtime:, "1.5 - 2 hours")
 
-the_karate_kid = Movie.create(title: "The Karate Kid", genre: "Family", runtime:, "1 - 1.5 hours")
+the_karate_kid = Movie.create(title: "The Karate Kid", genre: "Family", runtime:, "2 - 2.5 hours")
 
-the_one_and_only_ivan = Movie.create(title: "The One and Only Ivan", genre: "Family", runtime:, "1 - 1.5 hours")
+the_one_and_only_ivan = Movie.create(title: "The One and Only Ivan", genre: "Family", runtime:, "1.5 - 2 hours")
 
-cinderella = Movie.create(title: "Cinderella", genre: "Family", runtime:, "1 - 1.5 hours")
+cinderella = Movie.create(title: "Cinderella", genre: "Family", runtime:, "1.5 - 2 hours")
 
 harry_potter_and_the_sorcerers_stone = Movie.create(title: "Harry Potter and the Sorcerer's Stone", genre: "Family", runtime:, "over 2.5 hours")
 
@@ -460,6 +460,6 @@ harry_potter_and_the_goblet_of_fire = Movie.create(title: "Harry Potter and the 
 
 charlie_and_the_chocolate_factory = Movie.create(title: "Charlie and the Chocolate Factory", genre: "Family", runtime:, "1.5 - 2 hours")
 
-the_princess_bride = Movie.create(title: "The Princess Bride", genre: "Family", runtime:, "1 - 1.5 hours")
+the_princess_bride = Movie.create(title: "The Princess Bride", genre: "Family", runtime:, "1.5 - 2 hours")
 
-the_secret_gardern = Movie.create(title: "The Secret Garden", genre: "Family", runtime:, "1 - 1.5 hours")
+the_secret_gardern = Movie.create(title: "The Secret Garden", genre: "Family", runtime:, "1.5 - 2 hours")

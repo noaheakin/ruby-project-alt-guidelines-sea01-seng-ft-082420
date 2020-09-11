@@ -31,3 +31,5 @@ Run the following command from the project directory in your terminal to get sta
 Follow prompts to create then select user. You will then be prompted for a desired genre and movie runtime, which will help curate a list of qualifying movies from the database. Users are able to manually pick a movie from the list or have the app randomly choose for them. 
 
 If a user already exists, that user can be selected to go through the previously described prompts to arrive at a movie selection. Additionally, an existing user can be accessed to change their username, delete their account or view their watch history. 
+
+User --< Movie Night >-- Movie
