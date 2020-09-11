@@ -32,4 +32,4 @@ Follow prompts to create then select user. You will then be prompted for a desir
 
 If a user already exists, that user can be selected to go through the previously described prompts to arrive at a movie selection. Additionally, an existing user can be accessed to change their username, delete their account or view their watch history. 
 
-User --< Movie Night >-- Movie
+![App Workflow](/lib/images/Workflow.png "Movie Night App Menu Map")
