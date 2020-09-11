@@ -1,5 +1,5 @@
-# Movie Night App
-==================
+Movie Night App
+===============
 
 
 ## Overview
