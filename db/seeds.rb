@@ -86,7 +86,7 @@ the_silence_of_the_lambs = Movie.create(title: "The Silence of the Lambs", genre
 
 its_a_wonderful_life = Movie.create(title: "It's a Wonderful Life", genre: "Drama", runtime: "2 - 2.5 hours")
 
-star_wars_a_create_hope = Movie.create(title: "Star Wars: Episode IV - A create Hope", genre: "Sci-Fi", runtime: "2 - 2.5 hours")
+star_wars_a_new_hope = Movie.create(title: "Star Wars: Episode IV - A New Hope", genre: "Sci-Fi", runtime: "2 - 2.5 hours")
 
 saving_private_ryan = Movie.create(title: "Saving Private Ryan", genre: "Drama", runtime: "over 2.5 hours")
 

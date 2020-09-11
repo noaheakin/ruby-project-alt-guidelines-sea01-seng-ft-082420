@@ -51,7 +51,7 @@ class MovieNightApp
         user_input = gets.chomp.upcase
         if user_input == "Y" || user_input == "YES"
             new_user.save
-            puts "\n*New user #{new_user.name} successfully created!*\n"
+            puts "\n*New user '#{new_user.name}' successfully created!*\n"
             user_name
         elsif user_input == "N" || user_input == "NO"
             create_user
