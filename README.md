@@ -2,6 +2,7 @@ Movie Night App
 ===============
 
 
+
 ## Overview
 
 Movie Night App is a CLI application that helps a user select a movie from a vast library of top films based on their personal genre and runtime preferences. Your movie night just got a lot simpler.
@@ -26,8 +27,6 @@ Run the following command from the project directory in your terminal to get sta
 ```ruby
  ruby bin/run.rb
 ```
-
-## Description
 
 Follow prompts to create then select user. You will then be prompted for a desired genre and movie runtime, which will help curate a list of qualifying movies from the database. Users are able to manually pick a movie from the list or have the app randomly choose for them. 
 
